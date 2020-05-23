@@ -76,7 +76,7 @@ for imagePath in paths.list_images(testPath):
     hist = desc.describe(gray)
     name = os.path.basename(imagePath)
     name2 = str(os.path.splitext(name)[0])
-    test_labels.append(name2.split('.')[:-1])
+    test_labels.append(name2.split('_')[:-1])
     test_data.append(hist)
 #    predictionsvm = model.predict(test_data)
 #    print("predictionsvm",predictionsvm)
