@@ -4,16 +4,18 @@ from sklearn.svm import LinearSVC
 from imutils import paths
 import cv2
 import os
-import argparse
-from histogram_class import Histogram
+#import argparse
+from localbinarypatterns import LocalBinaryPatterns
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import VotingClassifier
+import numpy as np
 
 
-trainpath = 'train' 
-testPath = 'test'
+trainpath = 'Datasetorganized/train' 
+testPath = 'Datasetorganized/test'
  
+
 ## construct the argument parse and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-t", "--training", required=True,
@@ -30,7 +32,7 @@ testPath = 'test'
 #    
 #args = vars(ap.parse_args())
 
-desc = Histogram(24, 8)
+desc = LocalBinaryPatterns(24, 8)
 data = []
 labels = []
 # loop over the training images
@@ -87,9 +89,8 @@ for imagePath in paths.list_images(testPath):
 #print(test_labels) 
 for clf in (model, modelknn, voting_clf):
     y_pred = clf.predict(test_data)
+#    print(y_pred)
     print(clf.__class__.__name__, accuracy_score(test_labels, y_pred)*100)   
 #print(model.__class__.__name__, accuracy_score(test_labels, predictionsvm)*100)
 #print(modelknn.__class__.__name__, accuracy_score(test_labels, predictionknn)*100)
-    
-    
     

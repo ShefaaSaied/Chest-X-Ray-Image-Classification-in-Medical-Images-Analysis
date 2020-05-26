@@ -6,15 +6,15 @@ Created on Sat Nov  2 22:14:59 2019
 """
 import os
 import cv2
-from skimage import feature
+#from skimage import feature
 
-def LocalBinaryPattern(image, numPoints=24, radius=8):
-		# Compute the Local Binary Pattern representation of the image, 
-        # and then use the LBP representation to build the histogram of patterns
-		lbp = feature.local_binary_pattern(image, numPoints,radius, method="default")		
-		return lbp.astype("uint8")
+#def LocalBinaryPattern(image, numPoints=24, radius=8):
+#		# Compute the Local Binary Pattern representation of the image, 
+#        # and then use the LBP representation to build the histogram of patterns
+#		lbp = feature.local_binary_pattern(image, numPoints,radius, method="default")		
+#		return lbp.astype("uint8")
 
-parent_dir = "NORMAL"   #### full file path
+parent_dir = "D:/4th year material/second term/Elective/machine learning/Project/Chest-X-Ray-Image-Classification-in-Medical-Images-Analysis/data/PNEUMONIA"   #### full file path
 i=0
 for subdir, dirs, files in os.walk(parent_dir):      
     for file in files:
@@ -26,9 +26,9 @@ for subdir, dirs, files in os.walk(parent_dir):
         clahe = cv2.createCLAHE(clipLimit = 4.0, tileGridSize = (8,8))
         cll = clahe.apply(median)
         # LBP image
-        lbp_image = LocalBinaryPattern(cll)
+#        lbp_image = LocalBinaryPattern(cll)
         # ReScaling
-        resized_img = cv2.resize(lbp_image, (256, 256), interpolation = cv2.INTER_AREA)
+        resized_img = cv2.resize(cll, (256, 256), interpolation = cv2.INTER_AREA)
         # Save the new image in the same directory
         cv2.imwrite(template,resized_img)
         i=i+1
