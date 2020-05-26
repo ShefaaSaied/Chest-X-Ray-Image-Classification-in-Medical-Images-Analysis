@@ -12,24 +12,24 @@ from sklearn.ensemble import VotingClassifier
 import numpy as np
 
 
-trainpath = 'Datasetorganized/train' 
+
+trainpath = 'Datasetorganized/train'
 testPath = 'Datasetorganized/test'
- 
 
 ## construct the argument parse and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-t", "--training", required=True,
 #    help="path to the training images")
-#ap.add_argument("-e", "--testing", required=True, 
+#ap.add_argument("-e", "--testing", required=True,
 #    help="path to the tesitng images")
 #
 ##insert number of neighbors for knn
 #ap.add_argument("-k", "--neighbors", type=int, default=1,
 #	help="# of nearest neighbors for classification")
-#    
+#
 #ap.add_argument("-j", "--jobs", type=int, default=-1,
 #	help="# of jobs for k-NN distance (-1 uses all available cores)")
-#    
+#
 #args = vars(ap.parse_args())
 
 desc = LocalBinaryPatterns(24, 8)
@@ -86,11 +86,10 @@ for imagePath in paths.list_images(testPath):
 #    print("predictionknn",predictionknn)
 #    predictionvote = voting_clf(test_data)
 
-#print(test_labels) 
+print(test_labels)
 for clf in (model, modelknn, voting_clf):
     y_pred = clf.predict(test_data)
 #    print(y_pred)
-    print(clf.__class__.__name__, accuracy_score(test_labels, y_pred)*100)   
+    print(clf.__class__.__name__, accuracy_score(test_labels, y_pred)*100)
 #print(model.__class__.__name__, accuracy_score(test_labels, predictionsvm)*100)
 #print(modelknn.__class__.__name__, accuracy_score(test_labels, predictionknn)*100)
-    
