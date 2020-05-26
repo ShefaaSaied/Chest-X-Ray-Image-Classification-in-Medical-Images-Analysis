@@ -4,9 +4,9 @@ Created on Sat May 23 02:32:28 2020
 
 @author: Aya Gamal
 """
+# import the necessary packages
 from skimage import feature
 import numpy as np
-
 class LocalBinaryPatterns:
 	def __init__(self, numPoints, radius):
 		# store the number of points and radius
